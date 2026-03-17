@@ -53,10 +53,10 @@ Drop the components onto your character, create a DataAsset, wire three inputs, 
 - **Dynamic camera** — socket offset scales with lock-on distance
 
 ### 🧠 AI
-- Built-in **AI combat brain** — enemies can attack, dodge and react without custom code
+- **AI combat brain** — enemies can attack, dodge and react without custom code *(Under Development)*
 
 ### 📊 Attributes
-- Health, Chakra, Stamina, Strength, Level, XP
+- Health, Chakra, Stamina, Strength, Level, XP *(Under Development)*
 - Full replication with `OnRep` events for UI binding
 
 ### 🌐 Multiplayer
