@@ -1,173 +1,126 @@
 # NinjaCombatComponent
 
-**A data-driven, multiplayer-ready melee combat plugin for Unreal Engine 5**
+**A data-driven, multiplayer-ready melee combat plugin for Unreal Engine 5**  
+*by Darex Dynamic Systems*
 
-Developed by **Darex Dynamic Systems**
+> 🛒 **Available on Fab** — [Link coming soon]
 
 ---
 
-## Overview
+<!-- Replace the line below with your actual banner image once you have one -->
+<!-- ![Banner](Media/banner.png) -->
 
-NinjaCombatComponent is a complete melee combat framework for Unreal Engine 5, built around a data-driven DataAsset workflow. No C++ required to configure — every system is tuned directly in the editor. Designed for competitive action games in the style of Naruto: Ultimate Ninja Storm, Boruto: Shinobi Striker, and arena fighters.
+---
 
-The plugin covers the full combat loop out of the box:
+## What Is This?
 
-- **Combo chains** with buffered input and animated notify windows
-- **Single actions** for launcher and special attacks
-- **Block & Guard Meter** with chip damage and guard break
-- **Parry system** with configurable reaction window
-- **Dash with I-frames** and cancel rules
-- **Air combat** — launch, juggle routing, and drift control
+NinjaCombatComponent is a complete melee combat framework for Unreal Engine 5.  
+Built for competitive action games in the style of **Naruto: Ultimate Ninja Storm**, **Boruto: Shinobi Striker**, and arena fighters.
+
+Everything is configured through **DataAssets** — no C++ required.  
+Drop the components onto your character, create a DataAsset, wire three inputs, and you have a working combo system in minutes.
+
+---
+
+## Features
+
+### ⚔️ Combat
+- **Combo chains** — multi-step attacks with buffered input and animated notify windows
+- **Single actions** — launcher and special attacks via GameplayTags
+- **Block & Guard Meter** — chip damage, guard break, configurable drain rate
+- **Parry system** — tight reaction window with custom FX and reaction montages
+- **Dash with I-frames** — cancel rules, cooldown, directional dodge
+- **Hit Stop** — freeze-frame on impact for satisfying hit feel
+- **Super Armor** — configurable flinch immunity per attack
+
+### 🌀 Air Combat
+- **Launch attacks** — send enemies airborne into a juggle state
+- **Juggle routing** — configurable multi-step air combos via DataAsset
+- **Air drift control** — horizontal drift velocity fully configurable
+
+### 💥 Hit Reactions
+- **Directional reactions** — Front / Back / Left / Right montages
+- **HitStrength tiers** — Normal / Interrupt / KnockBack / KnockDown / Launch
 - **Knockdown & get-up** with quick rise option
-- **Hit stop** (freeze frame on impact)
-- **Directional hit reactions** (Front / Back / Left / Right)
-- **Weapon trail FX** via Niagara
-- **Target Assist** for close-range aim correction
-- **Lock-On** with camera control and target switching
-- **AI combat brain** for enemy characters
-- **Attribute system** — Health, Chakra, Stamina, Strength, Level/XP
-- **Full multiplayer replication** — server-authoritative by default
+- **Ragdoll on death**
+
+### 🎯 Targeting
+- **Target Assist** — soft aim correction for close-range attacks
+- **Lock-On system** — cone-based acquisition, LOS check, auto-break on death
+- **Target switching** — right-stick input, configurable switch cooldown
+- **Dynamic camera** — socket offset scales with lock-on distance
+
+### 🧠 AI
+- Built-in **AI combat brain** — enemies can attack, dodge and react without custom code
+
+### 📊 Attributes
+- Health, Chakra, Stamina, Strength, Level, XP
+- Full replication with `OnRep` events for UI binding
+
+### 🌐 Multiplayer
+- Server-authoritative by default
+- All montages broadcast via Multicast RPC
+- Hit detection server-only
+- Cosmetic FX gated on dedicated server builds
 
 ---
 
-## Engine & Requirements
+## Documentation
+
+| Document | Description |
+|---|---|
+| 📘 [User Manual](Docs/NinjaCombat_UserManual.pdf) | Step-by-step setup guide — components, DataAssets, input wiring, multiplayer |
+| 📗 [Technical Reference](Docs/NinjaCombat_TechnicalReference.pdf) | Full C++ API, all properties and functions documented |
+
+---
+
+## Quick Setup Preview
+
+```
+1. Add NinjaCombatComponent + NinjaDamageReceiverComponent + NinjaAttributeComponent to your Character
+2. Create a NinjaCombatComboDataAsset — set a ComboTag, add montage steps
+3. Wire input: Attack Started → PressActionByTag(ComboTag)
+4. Connect: OnHitProcessed → ApplyDamage
+```
+
+Full walkthrough in the [User Manual](Docs/NinjaCombat_UserManual.pdf).
+
+---
+
+## Compatibility
 
 | | |
 |---|---|
 | **Engine** | Unreal Engine 5.7 |
-| **Language** | C++ (plugin source included) |
-| **Dependencies** | Niagara (bundled with UE5) |
-| **Network** | Multiplayer-ready, server-authoritative |
+| **Network** | Singleplayer & Multiplayer |
+| **Dependencies** | Niagara (included with UE5) |
+| **Status** | Beta |
 
 ---
 
-## Components
+## Screenshots
 
-| Component | Purpose |
-|---|---|
-| `NinjaCombatComponent` | Attacker-side: combos, actions, block, dodge, hit feel, target assist |
-| `NinjaDamageReceiverComponent` | Victim-side: hit stun, launch, knockdown, reactions, ragdoll |
-| `NinjaAttributeComponent` | Health / Chakra / Stamina / Strength / Level / XP |
-| `NinjaMovementComponent` | Sprint, walk, multi-jump, slide, movement dash |
-| `NinjaLockOnComponent` | Target lock, camera control, target switching |
-| `NinjaAnimInstance` | AnimBP base class — reads replicated state from all components |
+*Coming soon — screenshots and gameplay GIFs will be added before Fab release.*
 
----
-
-## DataAssets
-
-All gameplay tuning lives in DataAssets — no code changes needed:
-
-| DataAsset | Configures |
-|---|---|
-| `NinjaCombatComboDataAsset` | Combo chain steps, montages, damage, FX per step |
-| `NinjaCombatActionDataAsset` | Single attack (launcher, special), montage, damage, FX |
-| `NinjaBlockDataAsset` | Block montage, Guard Meter, parry window, chip damage |
-| `NinjaDodgeDataAsset` | Dash distance, montage, I-frame window, cooldown, cancel rules |
-| `NinjaHitReactionDataAsset` | Reaction montages per direction and HitStrength |
-| `NinjaAirCombatDataAsset` | Juggle steps, drift velocity, air combo routes |
-| `NinjaMovementDataAsset` | Jump count, sprint speed, slide settings |
+<!-- Uncomment and fill in once you have media:
+![Combo System](Media/screenshots/combo_system.png)
+![Air Juggle](Media/screenshots/air_juggle.png)
+![Lock-On](Media/screenshots/lock_on.png)
+![Debug Tools](Media/screenshots/debug_tools.png)
+-->
 
 ---
 
-## Montage Setup (AnimNotifyStates)
+## Changelog
 
-All timing windows are placed directly inside montages as colored bars — no DataAsset entry required:
-
-| Color | NotifyState | Function |
-|---|---|---|
-| 🟢 Green | `Ninja Combat - Combo Window` | Window in which buffered input continues the combo |
-| 🔴 Red | `Ninja Combat - Hit Trace` | Active hit detection window. Configure socket, radius in Details |
-| 🔵 Blue | `Ninja Combat - Swing FX` | Weapon trail visibility window. Niagara system overridable per-notify |
+See [Docs/Changelog.md](Docs/Changelog.md) for version history.
 
 ---
 
-## Quick Setup
+## Support
 
-### 1 — Add Components
-Add the following to your Character Blueprint:
-- `NinjaCombatComponent`
-- `NinjaDamageReceiverComponent`
-- `NinjaAttributeComponent`
-- *(optional)* `NinjaMovementComponent`, `NinjaLockOnComponent`
-
-### 2 — Create a Combo DataAsset
-- Create a `NinjaCombatComboDataAsset`
-- Set a `ComboTag` (e.g. `Combat.Combo.LightAttack`)
-- Add the asset to `NinjaCombatComponent → Combos`
-
-### 3 — Set Up Montages
-For each combo step montage, add:
-- **Hit Trace** NotifyState with valid socket names
-- **Combo Window** NotifyState for input buffering
-
-### 4 — Wire Inputs
-```
-Attack Input  →  Started  →  PressActionByTag(ComboTag)
-Block Input   →  Started  →  PressBlock()
-Block Input   →  Completed →  ReleaseBlock()
-Dodge Input   →  Started  →  PressDodge()
-Lock-On Input →  Started  →  ToggleLockOn()
-Right Stick   →  Triggered →  SwitchTarget(StickInput)
-```
-
-### 5 — Connect the Damage Pipeline
-In your Character Blueprint:
-```
-NinjaDamageReceiver → OnHitProcessed → NinjaAttribute → ApplyDamage
-NinjaAttribute → OnDeath → [your respawn / game-over logic]
-```
+Questions or issues? Open a GitHub Issue in this repository.
 
 ---
 
-## Multiplayer
-
-The plugin is multiplayer-first. Critical systems are server-authoritative by default.
-
-**Handled automatically:**
-- Combat montages broadcast via Multicast RPC from server
-- Hit detection runs on server only (`HasAuthority()` guard)
-- Health / Chakra / Stamina replicated via `UPROPERTY(Replicated)`
-- Death & ragdoll via `Multicast_OnDeath`
-- Lock-On state replicated with `OnRep`
-- Guard Meter replicated ReadOnly
-- `VictimState` (HitStun / Launched / KnockedDown) replicated
-
-**What you need to configure:**
-- `bServerAuthoritative = true` on `NinjaCombatComponent` *(default)*
-- `bReplicates = true` on your Character
-- `CharacterMovementComponent → SetIsReplicated(true)` in constructor
-
-> **Dedicated Server:** Niagara, sound, and camera shake FX are gated behind `IsNetMode(NM_DedicatedServer)` checks and do not run on the server.
-
----
-
-## Debug Tools
-
-All debug visualization is off by default. Enable in the Details panel during PIE — no code changes required.
-
-| Component | Flag | Shows |
-|---|---|---|
-| `NinjaCombatComponent` | `bDebugTargetAssist` | Detection cone and acquire sphere |
-| `NinjaLockOnComponent` | `bDebugDrawLockOn` | Acquire/break radii, LOS trace, target info |
-| `NinjaLockOnComponent` | `bDebugDrawSwitchRadius` | Switch candidate search sphere |
-| `NinjaAttributeComponent` | `bDebugDrawStats` | Floating HP/Chakra/Stamina bars (local client only) |
-| `NinjaDamageReceiverComponent` | `bDebugPrintToScreen` | On-screen hit receive events |
-| `NinjaDamageReceiverComponent` | `bDebugLaunch` | Launch impulse arrow + velocity verification |
-| `NinjaDamageReceiverComponent` | `bDebugDirectionalReactions` | Direction selection with dot product values |
-| `NinjaMovementDataAsset` | `bDebugMode` | Jump/sprint/slide state change events |
-
----
-
-## Known Limitations
-
-- No built-in respawn system — death is permanent until you wire your own respawn logic
-- AI characters on non-Pawn collision channels are not found by lock-on acquisition
-- `HitBoneName` parameter on `ApplyDamage` does not yet have a Blueprint-facing tooltip
-
----
-
-## License
-
-This plugin is proprietary software by **Darex Dynamic Systems**.  
-All rights reserved.
+*© Darex Dynamic Systems — All rights reserved.*
