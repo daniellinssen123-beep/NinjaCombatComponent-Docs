@@ -1,23 +1,25 @@
+<div align="center">
+
+![NinjaCombatComponent](Media/banner.png)
+
 # NinjaCombatComponent
 
-**A data-driven, multiplayer-ready melee combat plugin for Unreal Engine 5**  
+**A data-driven, multiplayer-ready melee combat plugin for Unreal Engine 5**
+
 *by Darex Dynamic Systems*
 
-> 🛒 **Available on Fab** — [Link coming soon]
+> 🛒 **Available on Fab** — *Link coming soon*
 
----
-
-<!-- Replace the line below with your actual banner image once you have one -->
-<!-- ![Banner](Media/banner.png) -->
+</div>
 
 ---
 
 ## What Is This?
 
-NinjaCombatComponent is a complete melee combat framework for Unreal Engine 5.  
+NinjaCombatComponent is a complete melee combat framework for Unreal Engine 5.
 Built for competitive action games in the style of **Naruto: Ultimate Ninja Storm**, **Boruto: Shinobi Striker**, and arena fighters.
 
-Everything is configured through **DataAssets** — no C++ required.  
+Everything is configured through **DataAssets** — no C++ required.
 Drop the components onto your character, create a DataAsset, wire three inputs, and you have a working combo system in minutes.
 
 ---
@@ -101,13 +103,6 @@ Full walkthrough in the [User Manual](Docs/NinjaCombat_UserManual.pdf).
 ## Screenshots
 
 *Coming soon — screenshots and gameplay GIFs will be added before Fab release.*
-
-<!-- Uncomment and fill in once you have media:
-![Combo System](Media/screenshots/combo_system.png)
-![Air Juggle](Media/screenshots/air_juggle.png)
-![Lock-On](Media/screenshots/lock_on.png)
-![Debug Tools](Media/screenshots/debug_tools.png)
--->
 
 ---
 
